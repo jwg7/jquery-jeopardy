@@ -1,7 +1,11 @@
 .cell {
-  border: 1px solid #c2ba3c;
-  background: #f8ffde;
+  border: 1px solid black;
+  border-width: 3px;
+  background: darkblue;
+  font-size: 30px;
+  color: gold;
   padding: 10px;
+text-align: center
 }
 
 @media screen and (max-width: 768px) {
