@@ -1,0 +1,13 @@
+.cell {
+  border: 1px solid #c2ba3c;
+  background: #f8ffde;
+  padding: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  #grid {
+    grid-template-columns: auto;
+  }
+}
+
+
