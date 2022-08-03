@@ -2,6 +2,12 @@ body {
   background-Color: #d9bd80;
 }
 
+#scoreLabel {
+  font-weight: 900;
+  color: white;
+
+}
+
 .cell {
   border: 1px solid black;
   border-width: 3px;
