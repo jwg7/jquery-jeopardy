@@ -29,17 +29,20 @@ readJeopardyData();
 ///////////////////////////////////
 
 // create title
-let title = document.createElement("h1");
-title.innerText = "JEOPARDY!";
+let title = document.createElement("img");
+title.src = "images/jeopardybanner.png";
 document.body.appendChild(title);
-// css for title
-title.style.textAlign = "center";
-
+title.style.display = "block";
+title.style.marginLeft = "auto";
+title.style.marginRight = "auto";
 ////////////////////////////////////
 
 // create score label
 let scoreLabel = document.createElement("h3");
 scoreLabel.innerText = "YOUR SCORE:";
+scoreLabel.style.color = '#fe3e3d';
+scoreLabel.style.fontSize = '35px';
+scoreLabel.style.textShadow = '2px 1px black';
 document.body.appendChild(scoreLabel);
 // score label css
 scoreLabel.style.textAlign = "center";
@@ -47,6 +50,9 @@ scoreLabel.style.textAlign = "center";
 let score = document.createElement("p");
 let scoreCount = 0;
 score.innerText = scoreCount;
+score.style.fontSize = '35px'
+score.style.margin = '15px'
+score.style.color = 'black';
 // put score count under score label
 scoreLabel.appendChild(score);
 
@@ -86,10 +92,12 @@ function create100() {
     cell100.innerHTML = "$100";
     container.appendChild(cell100);
 
-    cell100.addEventListener("click", function () {
+    cell100.addEventListener("click", function (event) {
+      event.preventDefault();
       console.log(`click`);
       isClicked = true;
-      question.innerText = groupedData.$100[randomQuestion].question;
+      console.log(groupedData.$100[randomQuestion]);
+      question.innerHTML = groupedData.$100[randomQuestion].question;
     });
   }
 }
@@ -111,7 +119,7 @@ function create200() {
     cell200.addEventListener("click", function () {
       console.log(`click`);
       isClicked = true;
-      question.innerText = groupedData.$200[randomQuestion].question;
+      question.innerHTML = groupedData.$200[randomQuestion].question;
     });
   }
 }
@@ -133,7 +141,7 @@ function create300() {
     cell300.addEventListener("click", function () {
       console.log(`click`);
       isClicked = true;
-      question.innerText = groupedData.$300[randomQuestion].question;
+      question.innerHTML = groupedData.$300[randomQuestion].question;
     });
   }
 }
@@ -154,7 +162,7 @@ function create400() {
     cell400.addEventListener("click", function () {
       console.log(`click`);
       isClicked = true;
-      question.innerText = groupedData.$400[randomQuestion].question;
+      question.innerHTML = groupedData.$400[randomQuestion].question;
     });
   }
 }
@@ -176,7 +184,7 @@ function create500() {
     cell500.addEventListener("click", function () {
       console.log(`click`);
       isClicked = true;
-      question.innerText = groupedData.$500[randomQuestion].question;
+      question.innerHTML = groupedData.$500[randomQuestion].question;
     });
   }
 }
@@ -186,34 +194,74 @@ create500();
 /////////////////////////////////////
 // place where user sees question prompt
 //////////////////////////////////////
+
+//create parent section
 let section = document.createElement("section");
-let question = document.createElement("p");
-question.innerText = "SELECT A BOX TO START";
-question.style.fontSize = "20px";
-question.style.textAlign = "center";
+section.id = 'section'
 document.body.appendChild(section);
-section.appendChild(question);
+
+let section1 = document.createElement("section");
+section1.id = 'section1'
+section.appendChild(section1);
+
+// dancing man gif
+let dancing = document.createElement('img');
+dancing.id = 'gif'
+dancing.src = "https://muz.usovairina.ru/wp-content/uploads/2020/05/transparent-dance-gif-5.gif"
+section1.appendChild(dancing)
+
+// create child section
+let section2 = document.createElement("section");
+section2.id = 'section2'
+section.appendChild(section2);
+
+
+let question = document.createElement("p");
+question.innerText = `WELCOME TO JEOPARDY! \n CLICK A CATEGORY TO GET STARTED!`;
+question.style.fontSize = "26px";
+question.style.fontWeight = 'bold'
+question.style.textAlign = "center";
+section2.appendChild(question);
 
 /////////////////////////////////
 // place where user submits answer
 ///////////////////////////////////
 
 // create form. need input. need submit button.
-let form = document.createElement("form");
-form.id = "form";
-document.body.appendChild(form);
+let div = document.createElement("div");
+div.id = "div";
+section2.appendChild(div);
 let input = document.createElement("input");
 input.placeholder = "Enter your answer";
+input.style.color = 'white'
+input.style.fontSize = '25px'
 input.type = "text";
 input.id = "input";
-input.style.width = "250px";
-input.style.height = "40px";
-form.appendChild(input);
+input.style.width = "400px";
+input.style.height = "50px";
+input.style.backgroundColor = '#333333'
+div.appendChild(input);
+
 let button = document.createElement("button");
-button.type = "submit";
 button.innerText = "SUBMIT";
-button.style.height = "46px";
-button.id = "submit";
-form.appendChild(button);
+button.style.height = '55px';
+button.id = "button";
+button.style.backgroundColor = '#fe3e3d'
+div.appendChild(button);
 // css for form
-form.style.textAlign = "center";
+div.style.textAlign = "center";
+
+//game logic
+
+let guess = input.innerText;
+// This is the answer
+console.log(`Answer: ${groupedData.$100[randomQuestion].answer}`);
+
+button.addEventListener("click", function () {
+  console.log("click");
+  if (guess === groupedData.$100[randomQuestion].answer) {
+    question.innerText = `THAT'S RIGHT!`;
+  } else {
+    question.innerText = `You suck`;
+  }
+});

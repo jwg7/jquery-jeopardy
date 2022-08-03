@@ -1,3 +1,7 @@
+body {
+  background-Color: #d9bd80;
+}
+
 .cell {
   border: 1px solid black;
   border-width: 3px;
@@ -5,7 +9,39 @@
   font-size: 30px;
   color: gold;
   padding: 10px;
-text-align: center
+text-align: center;
+cursor: pointer;
+}
+
+.cell:hover {
+  background: #fe3e3d;
+
+}
+
+#gif {
+  width: 100%;
+  height: auto;
+}
+
+#section {
+  display: flex;
+  flex-direction: row;
+justify-content: center;
+}
+
+#div {
+  display: flex;
+  flex-direction: row;
+
+}
+
+#section1 {
+  width: 200px
+}
+
+#section2 {
+  flex-direction: column;
+  justify-content: center;
 }
 
 @media screen and (max-width: 768px) {
